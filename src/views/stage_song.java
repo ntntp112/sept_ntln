@@ -6,8 +6,7 @@
 
 package views;
 
-import java.util.Arrays;
-import java.util.List;
+import javafx.beans.property.ReadOnlyIntegerWrapper;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +17,6 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.ScrollPane;
@@ -32,6 +30,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Screen;
+import javafx.stage.Stage;
 import models.dto_song;
 
 /**
@@ -64,8 +63,8 @@ public class stage_song extends Stage{
 
         //Split Pane Left
         //Data
-        TreeItem<dto_song> root = new TreeItem<>(new dto_song("Song","","","","",0f));
-        ObservableList<dto_song> songs = FXCollections.observableArrayList(new dto_song("1000001", "Song1","","","",0f),new dto_song("1000021", "Song2","","","",0f),new dto_song("1000301", "Song4","","","",0f));
+        TreeItem<dto_song> root = new TreeItem<>(new dto_song(0,"","","","",0f));
+        ObservableList<dto_song> songs = FXCollections.observableArrayList(new dto_song(2, "Song1","","","",0f),new dto_song(2, "Song2","","","",0f),new dto_song(3, "Song4","","","",0f));
         songs.stream().forEach((song) -> {
             root.getChildren().add(new TreeItem<>(song));
         });
@@ -74,15 +73,17 @@ public class stage_song extends Stage{
         
         TreeTableView ttv_song = new TreeTableView(root);
 
-        TreeTableColumn<dto_song, String> col_code = new TreeTableColumn<>("Code");
+        TreeTableColumn<dto_song, Integer> col_code = new TreeTableColumn<>("Code");
         col_code.setPrefWidth(150);
-        col_code.setCellValueFactory((TreeTableColumn.CellDataFeatures<dto_song, String> param) -> new ReadOnlyStringWrapper(param.getValue().getValue().getCode()));
+//        col_code.setCellValueFactory(
+//                (TreeTableColumn.CellDataFeatures<dto_song, Integer> param) -> 
+//                        new ReadOnlyIntegerWrapper(param.getValue().getValue().getCode());
         
         TreeTableColumn<dto_song, String> col_title = new TreeTableColumn<>("Title");
         col_title.setPrefWidth(150);
         col_title.setCellValueFactory((TreeTableColumn.CellDataFeatures<dto_song, String> param) -> new ReadOnlyStringWrapper(param.getValue().getValue().getTitle()));
         
-        ttv_song.getColumns().addAll(col_code,col_title);
+        ttv_song.getColumns().addAll(col_title);
         
         
         ScrollPane scrollpane_song = new ScrollPane(ttv_song);

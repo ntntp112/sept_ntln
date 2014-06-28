@@ -13,7 +13,7 @@ import java.io.File;
  * @author NTN
  */
 public final class contants {
-    public static final String path_datafile = "/models/data";
+    public static final String path_datafile = "../src/models/data";
     
     //GetLocalFile
     public static File getLocalFile(String filepath) {

@@ -87,9 +87,9 @@ MediaPlayer mediaplayer;
         TableColumn titleColumn = new TableColumn("Title");
         
         
-        final ObservableList <dto_song> listSong = FXCollections.observableArrayList(new dto_song("s0001","song1"," "," "," ",0)); 
+        final ObservableList <dto_song> listSong = FXCollections.observableArrayList(new dto_song(1 ,"song1"," "," "," ",0)); 
         
-        codeColumn.setCellValueFactory(new PropertyValueFactory<dto_song,String>("code"));
+        codeColumn.setCellValueFactory(new PropertyValueFactory<dto_song,Integer>("code"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<dto_song,String>("title"));
         
         tbl_song.setItems(listSong);

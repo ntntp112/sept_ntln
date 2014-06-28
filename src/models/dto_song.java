@@ -6,8 +6,12 @@
 
 package models;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.FloatProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -16,19 +20,21 @@ import javafx.beans.property.StringProperty;
  * @author HNguyen
  */
 public class dto_song {
-    private final StringProperty code;
+    private final IntegerProperty code;
 
-    public String getCode() {
+    public int getCode() {
         return code.get();
     }
 
-    public void setCode(String value) {
+    public void setCode(int value) {
         code.set(value);
     }
 
-    public StringProperty codeProperty() {
+    public IntegerProperty codeProperty() {
         return code;
     }
+    
+    
     private final StringProperty title;
 
     public String getTitle() {
@@ -95,16 +101,27 @@ public class dto_song {
         return duration;
     }
 
-    public dto_song(String code, String title, String artist, String albumName, String lyrics, float duration) {
+    public dto_song(int code, String title, String artist, String albumName, String lyrics, float duration) {
         this.albumName = new SimpleStringProperty(albumName);
         this.artist = new SimpleStringProperty(artist);
         this.title = new SimpleStringProperty(title);
-        this.code = new SimpleStringProperty(code);
+        this.code = new SimpleIntegerProperty(code);
         this.lyrics = new SimpleStringProperty(lyrics);
         this.duration = new SimpleFloatProperty(duration);
         
     }
-   
+    private final BooleanProperty remove = new SimpleBooleanProperty();
 
-   
+    public boolean isRemove() {
+        return remove.get();
+    }
+
+    public void setRemove(boolean value) {
+        remove.set(value);
+    }
+
+    public BooleanProperty removeProperty() {
+        return remove;
+    }
+    
 }

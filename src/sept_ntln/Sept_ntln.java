@@ -5,10 +5,9 @@
  */
 package sept_ntln;
 
-import controllers.dto_staffs_change_controller;
+import controllers.generall_controller;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import models.dataobject;
 import models.model;
 import views.stage_login;
 import views.stage_main;
@@ -30,9 +29,9 @@ public class Sept_ntln extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        stage_main stgmain = new stage_main();
-        stgmain.show();
-//        
+//        stage_main stgmain = new stage_main();
+//        stgmain.show();
+////        
 //        stage_staff stgsatff= new stage_staff();
 //        stgsatff.show();
 //        
@@ -44,10 +43,23 @@ public class Sept_ntln extends Application {
 
         app_initialize();
     }
-
+    model m;
+    generall_controller ctrler;
+    
     private void app_initialize() {
+        //model
+        m = new model();
         
-        model m = new model();
+        //controller
+        ctrler = new generall_controller(m);
+        
+        //view
+        
+        
+        //mapping
+        
+        m.initialize();
     }
+
 
 }

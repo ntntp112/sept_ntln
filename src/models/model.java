@@ -6,12 +6,8 @@
 
 package models;
 
-import controllers.dto_staffs_change_controller;
+import controllers.generall_controller;
 import java.util.Observable;
-import javafx.collections.FXCollections;
-import javafx.collections.MapChangeListener;
-import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 
 /**
  *
@@ -20,14 +16,36 @@ import javafx.collections.ObservableMap;
 public class model extends Observable{
 
     private dataobject data_object;
+    private fileIO fileIO;
 
+
+    public dataobject getData_object() {
+        return data_object;
+    }
+    
     public model() {
-        intialize();
+        fileIO = new fileIO();
     }
 
-    private void intialize() {
-        data_object = new dataobject();
+    public void initialize() {
+        data_object = (dataobject) fileIO.loaddata();
+        if(data_object == null){
+            data_object = new dataobject();
+        }
+        
+        //test
+        write_data_object_to_file();
     }
+
+    public void write_data_object_to_file() {
+        fileIO.savedata(data_object);
+    }
+
+    @Override
+    protected synchronized void setChanged() {
+        
+    }
+    
     
     
 }

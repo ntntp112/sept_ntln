@@ -6,6 +6,8 @@
 
 package models;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -47,6 +49,20 @@ public class dto_staff {
     public StringProperty emailProperty() {
         return email;
     }
+    private final BooleanProperty remove = new SimpleBooleanProperty(false);
+
+    public boolean isRemove() {
+        return remove.get();
+    }
+
+    public void setRemove(boolean value) {
+        remove.set(value);
+    }
+
+    public BooleanProperty removeProperty() {
+        return remove;
+    }
+    
     
     
 }

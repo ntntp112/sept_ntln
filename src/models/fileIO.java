@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  *
  * @author Nguyen Trung Nhan s3425479
  */
-public class objectIO {
+public class fileIO {
 
     private final File appdatafile;
     private FileOutputStream fos;
@@ -32,15 +32,16 @@ public class objectIO {
     private BufferedReader br;
 
     //Contructor - create or load data file into appdatafile and use that file to the end of program.
-    public objectIO() {
+    public fileIO() {
         if (contants.getLocalFile(contants.path_datafile) != null) {
             appdatafile = contants.getLocalFile(contants.path_datafile);
+            System.out.println(appdatafile.getPath());
         } else {
-            appdatafile = new File("/models/data");
+            appdatafile = new File("src/models/data");
             try {
                 appdatafile.createNewFile();
             } catch (IOException ex) {
-                Logger.getLogger(objectIO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(fileIO.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("NTLN-Error: Failure to create file!!!");
             }
         }
@@ -54,7 +55,7 @@ public class objectIO {
             oos.close();
             fos.close();
         } catch (IOException ex) {
-            Logger.getLogger(objectIO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(fileIO.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("NTLN-Error: Failure to write object to file!!!");
         }
     }
@@ -65,7 +66,7 @@ public class objectIO {
             fos.write(content.getBytes());
             fos.close();
         } catch (IOException ex) {
-            Logger.getLogger(objectIO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(fileIO.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("NTLN-Error: Failure to save SQL to file!!!");
         }
     }
@@ -85,11 +86,11 @@ public class objectIO {
             fr.close();
             return sb.toString();
         } catch (EOFException | FileNotFoundException ex) {
-            Logger.getLogger(objectIO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(fileIO.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("NTLN-Error: File not found!!!");
             return null;
         } catch (IOException ex) {
-            Logger.getLogger(objectIO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(fileIO.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("NTLN-Error: Failure to read file!!!");
             return null;
         }
@@ -104,11 +105,11 @@ public class objectIO {
             fis.close();
             return obj;
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(objectIO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(fileIO.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("NTLN-Error: File not found!!!");
             return null;
         } catch (IOException | ClassNotFoundException ex) {
-            Logger.getLogger(objectIO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(fileIO.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("NTLN-Error: Failure to read object from file!!!");
             return null;
         }
